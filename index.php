@@ -1,12 +1,10 @@
-<!DOCTYPE php>
 <?php
     $fil = file_getcontents("./gamestate");
     $data = json_decode($fil);
     $P1score = $data->Pscore[0];
     $P2score = $data->Pscore[1];
     
-?>
-
+?><!DOCTYPE html>
 <html lang="et">
 <head>
     <meta charset="UTF-8">
