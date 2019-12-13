@@ -1,3 +1,4 @@
+<!DOCTYPE php>
 <?php
     $fil = file_getcontents("./gamestate");
     $data = json_decode($fil);
@@ -6,8 +7,9 @@
     
 ?>
 
-<html>
+<html lang="et">
 <head>
+    <meta charset="UTF-8">
     <style>
     #board {
         float: left;
