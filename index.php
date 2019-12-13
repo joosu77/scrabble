@@ -1,13 +1,13 @@
 <?php
-    $fil = file_getcontents("./gamestate");
-    $data = json_decode($fil);
+    $fil = file_get_contents("./gamestate.txt");
+    $data = json_decode($fil,"\0");
     $P1score = $data->Pscore[0];
     $P2score = $data->Pscore[1];
     
 ?><!DOCTYPE html>
 <html lang="et">
 <head>
-    <meta charset="UTF-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <style>
     #board {
         float: left;
@@ -22,18 +22,18 @@
 </head>
 <body>
     <h1>SCRABBLE</h1>
-    <table id="board">
-    <?php
+    <table id="board"><?php
+    $fil = file_get_contents("./gamestate.txt");
+    $data = json_decode($fil,"\0");
     $table = $data->table;
     for ($i=0;$i<15;$i++){
         echo "<tr>";
         for ($j=0;$j<15;$j++){
-            echo "<td>".$table[i][j]."</td>";
+            echo "<td>".$table[$i][$j]."</td>";
         }
         echo "</tr>";
     }
-    ?>
-    </table>
+    ?></table>
     <div id="left">
         <p id="score1">P1 score: 0</p>
         <p id="score2">P2 score: 0</p>
