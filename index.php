@@ -24,8 +24,6 @@
 <body>
     <h1>SCRABBLE</h1>
     <table id="board"><?php
-    $fil = file_get_contents("./gamestate.txt");
-    $data = json_decode($fil);
     $table = $data->table;
     for ($i=0;$i<15;$i++){
         echo "<tr>";
@@ -36,6 +34,24 @@
     }
     ?></table>
     <div id="left">
+        <?php
+            echo "<p>".$data->turn." kord on käia</p>";
+        ?>
+        <form name="xd" action="" method="get">
+            <input type="text" id="pass" value="pass">
+            <input type="text" name="word" value="sõna">
+            <input type="text" name="coords" value="(x,y)">
+            <!--<input type="submit">-->
+        </form>
+        <?php
+            if (isset($_GET['pass']) and isset($_GET['coords']) and isset($_GET['word'])){
+            $t = $data->turn;
+            $p = $_GET['pass'];
+            if ($p == $data->$t){
+                echo $_GET["coords"],$_GET["word"];
+            }
+            }
+        ?>
         <p id="score1">P1 score: 0</p>
         <p id="score2">P2 score: 0</p>
     </div>
