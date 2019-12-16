@@ -38,7 +38,7 @@
             echo "<p>".$data->turn." kord on käia</p>";
         ?>
         <form name="xd" action="" method="get">
-            <input type="text" id="pass" placeholder="pass">
+            <input type="text" name="pass" placeholder="pass">
             <input type="text" name="word" placeholder="sõna">
             <input type="text" name="coords" placeholder="(x,y)">
             <input type="submit">
