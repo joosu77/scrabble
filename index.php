@@ -38,10 +38,10 @@
             echo "<p>".$data->turn." kord on käia</p>";
         ?>
         <form name="xd" action="" method="get">
-            <input type="text" id="pass" value="pass">
-            <input type="text" name="word" value="sõna">
-            <input type="text" name="coords" value="(x,y)">
-            <!--<input type="submit">-->
+            <input type="text" id="pass" placeholder="pass">
+            <input type="text" name="word" placeholder="sõna">
+            <input type="text" name="coords" placeholder="(x,y)">
+            <input type="submit">
         </form>
         <?php
             if (isset($_GET['pass']) and isset($_GET['coords']) and isset($_GET['word'])){
