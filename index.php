@@ -1,6 +1,7 @@
 <?php
     $fil = file_get_contents("./gamestate.txt");
-    $data = json_decode($fil,"\0");
+    //$fil = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+    $data = json_decode($fil);
     $P1score = $data->Pscore[0];
     $P2score = $data->Pscore[1];
     
@@ -24,7 +25,7 @@
     <h1>SCRABBLE</h1>
     <table id="board"><?php
     $fil = file_get_contents("./gamestate.txt");
-    $data = json_decode($fil,"\0");
+    $data = json_decode($fil);
     $table = $data->table;
     for ($i=0;$i<15;$i++){
         echo "<tr>";
