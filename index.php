@@ -50,24 +50,33 @@
             if ($p == $data->pass->$t){
                 $playable = true;
                 echo $_GET["coords"],$_GET["word"];
+                
+                $lemmad = explode("\n", file_get_contents("./lemmad2013.txt"));
+                if (!in_array($_GET["word"],$lemmad) or strlen($_GET["word"])<2){
+                    echo "See sõna ei ole sõna<br>";
+                    $playable = false;
+                }
+                
                 $temphand = $data->hand[$data->turn];
                 $loccords = json_decode($_GET["coords"]);
                 $x = $loccords[0];
                 $y = $loccords[1];
                 for($l=0;$l<strlen($_GET["word"]);$l++){
                     $letter = $_GET["word"][$l];
-                    if (in_array($letter,$temphand)){
+                    if ($table[$y][$x]!=$letter and in_array($letter,$temphand)){
                         for ($i=0;$i<count($temphand);$i++){
                             if ($temphand[$i]==$letter){
                                 unset($temphand[$i]);
                                 break;
                             }
                         }
+                    } else if ($table[$y][$x]==$letter){
+                        //xd
                     } else {
                         echo "Sul pole piisavalt tähti selle käimiseks: ".$letter."<br>";
                         $playable = false;
                     }
-                    if ($x>14 or $y>14 or $table[$y][$x]!=" "){
+                    if ($x>14 or $y>14 or ($table[$y][$x]!=" " and $table[$y][$x]!=$letter)){
                         echo "Su sõna ei mahu ära: ".$x." ".$y."<br>";
                         $playable = false;
                     }
@@ -81,6 +90,8 @@
                 if ($playable){
                     $data->hand[$data->turn] = $temphand;
                 }
+            } else {
+                echo "Vale pass<br>";
             }
             }
         ?>
