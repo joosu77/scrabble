@@ -50,7 +50,8 @@
             if ($p == $data->pass->$t){
                 echo $_GET["coords"],$_GET["word"];
                 $temphand = $data->hand[$data->turn];
-                foreach($_GET["word"] as $letter){
+                for($l=0;$l<strlen($_GET["word"]);$l++){
+                    $letter = $_GET["word"][$l];
                     if (in_array($letter,$temphand)){
                         for ($i=0;$i<count($temphand);$i++){
                             if ($temphand[$i]==$letter){
