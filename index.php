@@ -60,7 +60,7 @@
                             }
                         }
                     } else {
-                        echo "Sul pole piisavalt tähti selle käimiseks: ".$letter."\n";
+                        echo "Sul pole piisavalt tähti selle käimiseks: ".$letter."<br>";
                     }
                 }
             }
