@@ -40,7 +40,7 @@
         <form name="xd" action="" method="get">
             <input type="text" name="pass" placeholder="pass">
             <input type="text" name="word" placeholder="sõna">
-            <input type="text" name="coords" placeholder="(x,y)">
+            <input type="text" name="coords" placeholder='[0,0,"p"]'>
             <input type="submit">
         </form>
         <?php
@@ -48,8 +48,12 @@
             $t = $data->turn;
             $p = $_GET['pass'];
             if ($p == $data->pass->$t){
+                $playable = true;
                 echo $_GET["coords"],$_GET["word"];
                 $temphand = $data->hand[$data->turn];
+                $loccords = json_decode($_GET["coords"]);
+                $x = $loccords[0];
+                $y = $loccords[1];
                 for($l=0;$l<strlen($_GET["word"]);$l++){
                     $letter = $_GET["word"][$l];
                     if (in_array($letter,$temphand)){
@@ -61,7 +65,21 @@
                         }
                     } else {
                         echo "Sul pole piisavalt tähti selle käimiseks: ".$letter."<br>";
+                        $playable = false;
                     }
+                    if ($x>14 or $y>14 or $table[$y][$x]!=" "){
+                        echo "Su sõna ei mahu ära: ".$x." ".$y."<br>";
+                        $playable = false;
+                    }
+                    if ($loccords[2]=="p")$x++;
+                    else if ($loccords[2]=="a")$y++;
+                    else {
+                        echo "Sisestatud koordinaadid on vigased<br>";
+                        $playable = false;
+                    }
+                }
+                if ($playable){
+                    $data->hand[$data->turn] = $temphand;
                 }
             }
             }
