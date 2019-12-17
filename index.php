@@ -47,8 +47,21 @@
             if (isset($_GET['pass']) and isset($_GET['coords']) and isset($_GET['word'])){
             $t = $data->turn;
             $p = $_GET['pass'];
-            if ($p == $data->$t){
+            if ($p == $data->pass->$t){
                 echo $_GET["coords"],$_GET["word"];
+                $temphand = $data->hand[$data->turn];
+                foreach($_GET["word"] as $letter){
+                    if (in_array($letter,$temphand)){
+                        for ($i=0;$i<count($temphand);$i++){
+                            if ($temphand[$i]==$letter){
+                                unset($temphand[$i]);
+                                break;
+                            }
+                        }
+                    } else {
+                        echo "Sul pole piisavalt tähti selle käimiseks: ".$letter."\n";
+                    }
+                }
             }
             }
         ?>
